@@ -10,7 +10,7 @@ export default  function Footer() {
                 <div className="flex items-end  justify-between max-[992px]:flex-col max-[992px]:items-center gap-4 pb-7 border-b-2 border-white">
                     <div className="w-[47%] mb-20 max-[992px]:w-full">
                         <Image 
-                        src="/images/logo.svg"
+                        src="/logo.svg"
                         alt="logo" 
                         loading="lazy"
                         className="mb-4 max-[992px]:m-auto"
