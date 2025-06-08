@@ -1,12 +1,24 @@
 "use client"
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   const pathName = usePathname();
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-100 px-4">
+    <div className='custom__container'>
+      <div className='flex items-center gap-2 mb-8 text-[#393939] text-lg mr-auto pt-4 pl-20 max-[575px]:pl-9'>
+        <Link href={"/"} className='text-[#868686]'>Home</Link>
+        <Image 
+        src={"/arrow-right.svg"}
+        alt="Arrow Right"
+        width={24}
+        height={24}
+        />
+        <div className='font-semibold'>Account</div>
+      </div>
+          <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-100 px-4 max-[575px]:min-h-auto max-[575px]:py-12">
       <div className="w-3/5 space-y-8 max-[767px]:w-full">
         {/* Navigation buttons */}
         <div className="flex justify-between">
@@ -39,5 +51,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         <div>{children}</div>
       </div>
     </div>
+    </div>
+
   );
 }

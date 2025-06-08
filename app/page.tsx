@@ -1,7 +1,10 @@
+import Landing from "./components/Landing";
+import BestSeller from "./components/BestSeller";
 export default function Home() {
   return (
     <main>
-      <h1>Home Page Here</h1>
+      <Landing />
+      <BestSeller />
     </main>
   );
 }

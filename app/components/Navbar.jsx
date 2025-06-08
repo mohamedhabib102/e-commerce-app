@@ -11,25 +11,25 @@ export default function Navbar() {
   const links = {
     generalText: {
       title: "General",
-      icons: ["h", "h", "h"],
+      icons: ["/Home.svg", "/products.svg", "/contactus.svg"],
       text: ["Home", "Products", "Contact Us"],
       path: ["/", "/Products", "/Contact"]
     },
     mySpace: {
       title: "MySpace",
-      icons: ["s", "s"],
+      icons: ["/activity.svg", "/privacy.svg"],
       text: ["Activity", "Privacy"],
       path: ["/Activity", "/Privacy"]
     },
     support: {
       title: "Support",
-      icons: ["h"],
+      icons: ["/help.svg"],
       text: ["Help!"],
       path: ["/Help"]
     },
     account: {
       text: ["Account"],
-      icons: ["A"],
+      icons: ["/account.svg"],
       path: ["/auth/login", "/auth/signup"]
     }
   };
@@ -38,7 +38,7 @@ export default function Navbar() {
 
 // links of toggle 
 const renderLinks = (section) => (
-  <div className="px-9">
+  <div className="px-9 py-4 border-b border-[#9A3E631A] last:border-b-0">
     {section.title && (
       <h4 className="text-[14px] text-[#9A3E63] mb-2">{section.title}</h4>
     )}
@@ -54,9 +54,16 @@ const renderLinks = (section) => (
           <li key={index} className="mb-1">
             <Link
               href={linkPath}
-              className={`${isActive ? "text-white font-bold underline" : "text-black"}`}
+              className={`${isActive ? "text-white bg-gradient-to-r from-[#FE93B9] to-[#9A3E63] border-[1px] border-transparent border-l-[#9A3E63] " : "text-[#000000CC]"}
+              flex items-center gap-2 text-[13px] rounded-[10px] py-1.5 px-2.5 w-full`}
             >
-              {section.icons[index]} {ele}
+              {
+              <Image
+              src={section.icons[index]}
+              width={20}
+              height={20}
+              alt="icon"
+              />} {ele}
             </Link>
           </li>
         );
@@ -101,7 +108,18 @@ const renderLinks = (section) => (
                 {/* toggle */}
                 <li className="relative">
                   {toggle && (
-                    <div className="absolute -bottom-[45px] left-1/2 -translate-x-1/2 w-0 h-0 border-[20px] border-l-transparent border-r-transparent border-b-transparent border-t-[#FE93B9]"></div>
+                    <>
+                    {/* <div className="absolute -bottom-[45px] left-1/2 -translate-x-1/2 w-0 h-0 border-[20px] border-l-transparent border-r-transparent border-b-transparent border-t-[#FE93B9]"></div> */}
+                    <span className="absolute -bottom-[35px] left-1/2 w-10 -translate-x-1/2"> 
+                      <Image
+                        src="/iconToggle.svg"
+                        width={50}
+                        height={50}
+                        loading="lazy"
+                        alt="close menu"
+                      />
+                    </span>
+                    </>
                   )}
 
                   <Image
@@ -115,7 +133,7 @@ const renderLinks = (section) => (
                   />
 
                   {toggle && (
-                    <div className="absolute py-4 bg-[#c08e9f] top-[60px] -left-6 rounded-r-[8px] rounded-b-[8px] z-50">
+                    <div className="absolute py-4 bg-[#fe93b9] top-[60px] -left-6 rounded-r-[8px] rounded-b-[8px] z-50">
                       <div className="px-9">
                         <Image
                           src="/logo.svg"
@@ -132,7 +150,7 @@ const renderLinks = (section) => (
                             height={24}
                             loading="lazy"
                             alt="search icon"
-                            className="absolute top-1/2 left-0 -translate-y-1/2"
+                            className="absolute top-1/2 left-8 -translate-y-1/2"
                           />
                           <input
                             placeholder="Search"
@@ -143,8 +161,7 @@ const renderLinks = (section) => (
                         </div>
                       </div>
 
-                      {/* روابط القوائم */}
-                      <div className="pt-4 pb-4 px-7 mb-4 border-b border-[#9A3E631A]">
+                      <div className="pt-4 pb-4 px-7 mb-4">
                         {renderLinks(links.generalText)}
                         {renderLinks(links.mySpace)}
                       {renderLinks(links.support)}
@@ -171,20 +188,44 @@ const renderLinks = (section) => (
                 <li className="flex items-center gap-2">
                   <Link href="/">
                     <Image
-                      src="/icon-header.svg"
-                      width={20}
-                      height={20}
+                      src="/search.svg"
+                      width={30}
+                      height={30}
                       loading="lazy"
                       alt="icon-header"
                     />
                   </Link>
-                  <Link href="/">
+                  <Link href="/" 
+                  className="bg-[#FE93B9] rounded-full w-[35px] h-[35px] flex justify-center items-center">
                     <Image
-                      src="/icon-header.svg"
+                      src="/cart.svg"
                       width={20}
                       height={20}
                       loading="lazy"
                       alt="icon-header"
+                      className=""
+                    />
+                  </Link>
+                  <Link href="/" 
+                  className="bg-[#FE93B9] rounded-full w-[35px] h-[35px] flex justify-center items-center">
+                    <Image
+                      src="/Facebook.svg"
+                      width={10}
+                      height={10}
+                      loading="lazy"
+                      alt="icon-header"
+                      className=""
+                    />
+                  </Link>
+                  <Link href="/" 
+                  className="bg-[#FE93B9] rounded-full w-[35px] h-[35px] flex justify-center items-center">
+                    <Image
+                      src="/Instagram.svg"
+                      width={20}
+                      height={20}
+                      loading="lazy"
+                      alt="icon-header"
+                      className=""
                     />
                   </Link>
                 </li>
