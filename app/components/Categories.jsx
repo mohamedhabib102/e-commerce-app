@@ -2,8 +2,12 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Heart, Star } from 'lucide-react';
+import Link from "next/link";
+
+
 
 export default function Categories() {
+    const [selected, setSelected] = useState(0);
     const categories = [
         { id: 0, title: "All products" },
         { id: 1, title: "Lips", image: "/lips.svg" },
@@ -12,7 +16,6 @@ export default function Categories() {
         { id: 4, title: "Body", image: "/body.svg" },
         { id: 5, title: "Perfume", image: "/perfume.svg" }
     ];
-    const [selected, setSelected] = useState(0);
 
 
     const allProducts = [
@@ -80,7 +83,7 @@ export default function Categories() {
         },
     ];
 
-    // تعديل renderStars لتأخذ قيمة rating كـ argument
+
     const renderStars = (rating) => {
         const stars = [];
         const fullStars = Math.floor(rating);
@@ -146,13 +149,13 @@ export default function Categories() {
                    {/* Product Image */}
                    <div className="relative">
                      {/* <span>{isOnSale ? "Sale" : ""}</span> */}
-                     <div className='bg-white rounded-[12px] p-6 h-80 mb-2.5'>
+                     <Link href={`Products/${product.id}`} className='bg-white block rounded-[12px] p-6 h-80 mb-2.5'>
                        <img
                        src={product.image}
                        alt={product.name}
                        className="w-full h-48 object-contain group-hover:scale-105 transition-transform duration-300"
                      />
-                     </div>
+                     </Link>
                    </div>
               
                     {/* Product Info */}

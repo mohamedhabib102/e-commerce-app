@@ -1,8 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import Categories from "../components/Categories";
+import ProductDetails from "./[productDetails]/page";
 
 
+
+export const metadata = {
+  title: "Products"
+}
  export default function ProductsPage() {
   return (
     <div className="custom__container">
@@ -16,7 +21,7 @@ import Categories from "../components/Categories";
         />
       <div className='font-semibold'>Categories</div>
       </div>
-      <Categories />
+      <Categories  />
     </div>
 );
 }

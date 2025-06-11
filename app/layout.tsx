@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "E-Commerce App",
+  title: "Home",
   description: "An interactive and responsive E-Commerce web application for browsing, searching, and purchasing products online with ease.",
 };
 
