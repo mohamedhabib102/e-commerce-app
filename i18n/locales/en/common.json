@@ -1,0 +1,11 @@
+{
+  "navbar": {
+    "home": "Home",
+    "products": "Products",
+    "contact": "Contact",
+    "cart": "Cart",
+    "logout": "Logout",
+    "account": "Account",
+    "language": "العربية"
+  }
+}

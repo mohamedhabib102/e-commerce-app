@@ -1,12 +1,20 @@
 "use client"
+import "../../i18n/i18n";
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useTranslation  } from "react-i18next"
 
 export default function Navbar() {
   const pathName = usePathname();
   const [toggle, setToggle] = useState(false);
+  const { t } = useTranslation('common')
+    useEffect(() => {
+    setToggle(false);
+  }, [pathName])
+
+  const toggleMenu = () => setToggle(!toggle);
 
   const links = {
     generalText: {
@@ -195,7 +203,8 @@ export default function Navbar() {
   </svg>
 ],
       text: ["Home", "Products", "Contact Us"],
-      path: ["/", "/Products", "/Contact"]
+      path: ["/", "/Products", "/Contact"],
+      keys: ["home", "products", "contact"]
     },
     mySpace: {
       title: "MySpace",
@@ -284,7 +293,8 @@ export default function Navbar() {
         />
       </svg>],
       text: ["Activity", "Privacy"],
-      path: ["/Activity", "/Privacy"]
+      path: ["/Activity", "/Privacy"],
+      keys: ["activity", "privacy"]
     },
     support: {
       title: "Support",
@@ -325,10 +335,12 @@ export default function Navbar() {
         />
       </svg>],
       text: ["Help!"],
-      path: ["/Help"]
+      path: ["/Help"],
+      keys: ["help"]
     },
     account: {
       text: ["Account"],
+      keys: ["account"],
       icons: [<svg
         key="icon4-inactive"
         xmlns="http://www.w3.org/2000/svg"
@@ -399,7 +411,7 @@ export default function Navbar() {
     }
   };
 
-  const toggleMenu = () => setToggle(!toggle);
+
 
 // links of toggle 
 const renderLinks = (section) => (
@@ -410,20 +422,25 @@ const renderLinks = (section) => (
     <ul>
       {section.text.map((ele, index) => {
         const linkPath = section.path[index];
-        const isAccountSection = section.text.includes("Account");
+        const key = section.keys[index];
+        const isAccountSection = key === "account";
+
         const isActive = isAccountSection
           ? ["/auth/login", "/auth/signup"].includes(pathName)
-          : pathName === linkPath;
+          : pathName === linkPath || (linkPath === "/Products" && pathName.startsWith("/Products/"));
 
         return (
           <li key={index} className="mb-1">
             <Link
               href={linkPath}
-              className={`${isActive ? "text-white bg-gradient-to-r from-[#FE93B9] to-[#9A3E63] border-[1px] border-transparent border-l-[#9A3E63] " : "text-[#000000CC]"}
+              className={`${isActive
+                ? "text-white bg-gradient-to-r from-[#FE93B9] to-[#9A3E63] border-[1px] border-transparent border-l-[#9A3E63]"
+                : "text-[#000000CC]"}
               flex items-center gap-2 text-[13px] rounded-[10px] py-1.5 px-2.5 w-full`}
             >
-              {isActive ? (section.iconsIsActive[index]) : (section.icons[index])}
-              {ele} 
+              {isActive ? section.iconsIsActive?.[index] : section.icons?.[index]}
+              {/* {t(`navbar.${key}`)} */}
+              {ele}
             </Link>
           </li>
         );
@@ -431,6 +448,7 @@ const renderLinks = (section) => (
     </ul>
   </div>
 );
+
 
 
 
@@ -546,7 +564,7 @@ const renderLinks = (section) => (
 
                 {/* header icons */}
                 <li className="flex items-center gap-2">
-                  <Link href="/">
+                  <Link href="/Products">
                     <Image
                       src="/search.svg"
                       width={30}
@@ -555,8 +573,8 @@ const renderLinks = (section) => (
                       alt="icon-header"
                     />
                   </Link>
-                  <Link href="/" 
-                  className="bg-[#FE93B9] rounded-full w-[35px] h-[35px] flex justify-center items-center">
+                  <Link href="/Cart" 
+                  className="lg:bg-[#FE93B9] bg-transparent rounded-full w-[35px] h-[35px] flex justify-center items-center">
                     <Image
                       src="/cart.svg"
                       width={20}
@@ -567,7 +585,7 @@ const renderLinks = (section) => (
                     />
                   </Link>
                   <Link href="/" 
-                  className="bg-[#FE93B9] rounded-full w-[35px] h-[35px] flex justify-center items-center">
+                  className="bg-[#FE93B9] hidden rounded-full w-[35px] h-[35px] lg:flex justify-center items-center">
                     <Image
                       src="/Facebook.svg"
                       width={10}
@@ -578,7 +596,7 @@ const renderLinks = (section) => (
                     />
                   </Link>
                   <Link href="/" 
-                  className="bg-[#FE93B9] rounded-full w-[35px] h-[35px] flex justify-center items-center">
+                  className="bg-[#FE93B9] hidden rounded-full w-[35px] h-[35px] lg:flex justify-center items-center">
                     <Image
                       src="/Instagram.svg"
                       width={20}

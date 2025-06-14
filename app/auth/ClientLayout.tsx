@@ -8,7 +8,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   return (
     <div className='custom__container'>
-      <div className='flex items-center gap-2 mb-8 text-[#393939] text-lg mr-auto pt-4 pl-20 max-[575px]:pl-9'>
+      <div className='flex items-center gap-2 mb-8 text-[#393939] lg:text-lg mr-auto md:pl-9 text-sm'>
         <Link href={"/"} className='text-[#868686]'>Home</Link>
         <Image 
           src={"/arrow-right.svg"}

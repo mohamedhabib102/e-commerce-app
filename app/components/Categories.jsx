@@ -117,26 +117,39 @@ export default function Categories() {
             : allProducts.filter((p) => p.category === selected);
 
     return (
-        <div className="w-full overflow-x-auto scrollbar-hide pt-14 pb-28">
-            <div className="flex gap-5 py-6 mb-8 min-w-max">
+        <div className="w-full pt-14 pb-28">
+            <div className="overflow-x-auto scrollbar-hide">
+              <ul className="flex gap-5 py-6 mb-8 w-max whitespace-nowrap">
                 {categories.map((cat) => (
-                    <button
-                        key={cat.id}
-                        onClick={() => setSelected(cat.id)}
-                        className={`
-                            ${                        selected === cat.id
-                                ? "flex items-center gap-2 px-6 py-3 rounded-xl bg-[#FE93B9] text-[#393939] font-semibold shadow"
-                                : "flex items-center gap-2 px-6 py-3 rounded-xl border border-[#FE93B9] hover:bg-[#FE93B9] hover:shadow text-[#393939] bg-transparent"}
-                         cursor-pointer transition`}
-                    >
-                        <span>{cat.title}</span>
-                        {cat.image && (
-                            <Image src={cat.image} alt={cat.title} width={22} height={22} />
-                        )}
-                    </button>
+                  <li
+                    key={cat.id}
+                    onClick={() => setSelected(cat.id)}
+                    className={`
+                      ${selected === cat.id
+                        ? "flex items-center gap-2 px-6 py-3 rounded-xl bg-[#FE93B9] text-[#393939] font-semibold shadow"
+                        : "flex items-center gap-2 px-6 py-3 rounded-xl border border-[#FE93B9] hover:bg-[#FE93B9] hover:shadow text-[#393939] bg-transparent"}
+                      cursor-pointer transition`}
+                  >
+                    <span>{cat.title}</span>
+                    {cat.image && (
+                      <Image src={cat.image} alt={cat.title} width={22} height={22} />
+                    )}
+                  </li>
                 ))}
+              </ul>
+            
+              <style jsx>{`
+                .scrollbar-hide::-webkit-scrollbar {
+                  display: none;
+                }
+                .scrollbar-hide {
+                  -ms-overflow-style: none;
+                  scrollbar-width: none;
+                }
+              `}</style>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+            <div className="grid  lg:grid-cols-4  md:grid-cols-3  sm:grid-cols-2  grid-cols-1 gap-6">
                 {filteredProducts.map((product) => (
                     <div key={product.id} className="">
                         <div className="overflow-hidden relative">
@@ -210,15 +223,6 @@ export default function Categories() {
                  </div>
                 ))}
             </div>
-            <style jsx>{`
-                .scrollbar-hide::-webkit-scrollbar {
-                    display: none;
-                }
-                .scrollbar-hide {
-                    -ms-overflow-style: none;
-                    scrollbar-width: none;
-                }
-            `}</style>
         </div>
     );
 }
