@@ -1,4 +1,5 @@
 "use client"
+
 import Image from "next/image"
 import { useState } from "react"
 
@@ -95,7 +96,7 @@ function Details() {
         <span className="ml-3 text-[#393939] font-semibold">4.0</span>
         </div>
         <p className="text-[#393939] font-semibold text-[20px] mt-1.5">420.00 EGP</p>
-        <button className="text-[#0B0806] font-semibold flex items-center gap-4 cursor-pointer">
+        <button className="text-[#0B0806] font-semibold flex items-center gap-4 cursor-pointer my-[17px]">
             Product Details 
             <Image
             src={"/arrow-down.svg"}
@@ -104,9 +105,13 @@ function Details() {
             alt="arrow"
             />
         </button>
-        <div className={`flex items-center gap-3 mt-2`}>{colorsData.map((ele, index) => (
-            <span key={index} className={`w-4 h-4 rounded-full cursor-pointer hover:scale-110 transition`} style={{backgroundColor: ele}}></span>
+        <div>
+        <span className="text-[#393939] block mb-2.5 font-semibold">Choose Color</span>
+        <div className={`flex items-center gap-3`}>
+            {colorsData.map((ele, index) => (
+            <span key={index} className={`w-[18px] h-[18px] rounded-full cursor-pointer hover:scale-110 transition`} style={{backgroundColor: ele}}></span>
         ))}</div>
+        </div>
     </div>
     
     </div>
