@@ -117,7 +117,7 @@ export default function Categories() {
             : allProducts.filter((p) => p.category === selected);
 
     return (
-        <div className="w-full pt-14 pb-28">
+        <div className="w-full">
             <div className="overflow-x-auto scrollbar-hide">
               <ul className="flex gap-5 py-6 mb-8 w-max whitespace-nowrap">
                 {categories.map((cat) => (

@@ -10,7 +10,8 @@ export const metadata = {
 }
  export default function ProductsPage() {
   return (
-    <div className="custom__container">
+    <section className="py-16">
+      <div className="custom__container">
       <div className='flex items-center gap-2 mb-8 text-[#393939] lg:text-lg mr-auto md:pl-9 text-sm'>
         <Link  href={"/"} className='text-[#868686]'>Home</Link>
         <Image
@@ -23,5 +24,6 @@ export const metadata = {
       </div>
       <Categories  />
     </div>
+    </section>
 );
 }
